@@ -18,6 +18,14 @@ create table if not exists messages (
 );
 `;
 
+const FILL_DATA = `
+insert into users (first_name, last_name, email, password) values
+    ('John', 'Doe', 'johndoe@gmail.com', 'secretstuff');
+
+insert into messages (user_id, timestamp, text) values
+    (1, current_timestamp, 'I drank too much coffee today, my head feels dizzy');
+`;
+
 async function main() {
   const client = new Client({
     connectionString: process.env.DB_URL,
@@ -27,6 +35,8 @@ async function main() {
     console.log("Creating Tables...");
     await client.query(CREATE_TABLES);
     console.log("Tables created successfully!");
+    console.log("Filling up tables with sample data...");
+    await client.query(FILL_DATA);
     await client.end();
   } catch (error) {
     console.error(error);
