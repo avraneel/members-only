@@ -37,6 +37,7 @@ async function main() {
     console.log("Tables created successfully!");
     console.log("Filling up tables with sample data...");
     await client.query(FILL_DATA);
+    console.log("Data filled successfully!");
     await client.end();
   } catch (error) {
     console.error(error);

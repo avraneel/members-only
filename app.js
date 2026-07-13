@@ -19,5 +19,5 @@ app.use("/login", loginRouter);
 app.use("/signup", signupRouter);
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}...`);
 });
