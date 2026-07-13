@@ -1,4 +1,6 @@
 import express from "express";
+import passport from "passport";
+import { LocalStrategy } from "passport-local";
 import { indexRouter } from "./routes/router.js";
 import { loginRouter } from "./routes/loginRouter.js";
 import { signupRouter } from "./routes/signupRouter.js";
