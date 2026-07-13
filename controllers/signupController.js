@@ -1,19 +1,20 @@
 import passport from "passport";
-import pool from "../db/pool";
+import pool from "../db/pool.js";
 
 export const signupController = {
   signupControllerGet: (req, res) => {
     res.render("signup");
   },
 
-  signupControllerPost: async (req, res) => {
+  signupControllerPost: async (req, res, next) => {
     try {
+      console.log(req.body);
       await pool.query(
-        "insert into users (first_name, last_name, username, password) values ($1, $2, $3, $4)",
+        "insert into users (first_name, last_name, email, password) values ($1, $2, $3, $4)",
         [
           req.body.firstName,
           req.body.lastName,
-          req.body.username,
+          req.body.email,
           req.body.password,
         ],
       );

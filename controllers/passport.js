@@ -1,6 +1,7 @@
 import passport from "passport";
 import pool from "../db/pool";
-import { LocalStrategy } from "passport-local";
+import pkg from "passport-local";
+const { LocalStrategy } = pkg;
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {

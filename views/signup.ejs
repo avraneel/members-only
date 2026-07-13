@@ -1,7 +1,7 @@
 <%- include("partials/navbar") %>
 <div class="login">
   <!-- TODO maybe put them both together? -->
-  <form action="/signup">
+  <form action="/signup" method="post">
     <h2>Sign up</h2>
     <div class="formItem">
       <label for="firstName">First Name: </label>
@@ -19,5 +19,6 @@
       <label for="password">Password: </label>
       <input type="password" name="password" id="password" />
     </div>
+    <button>Sign Up</button>
   </form>
 </div>
