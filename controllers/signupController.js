@@ -1,4 +1,5 @@
 import passport from "passport";
+import bcrypt from "bcryptjs";
 import pool from "../db/pool.js";
 
 export const signupController = {
@@ -8,18 +9,14 @@ export const signupController = {
 
   signupControllerPost: async (req, res, next) => {
     try {
-      console.log(req.body);
+      const hashedPassword = await bcrypt.hash(req.body.password, 12);
       await pool.query(
         "insert into users (first_name, last_name, email, password) values ($1, $2, $3, $4)",
-        [
-          req.body.firstName,
-          req.body.lastName,
-          req.body.email,
-          req.body.password,
-        ],
+        [req.body.firstName, req.body.lastName, req.body.email, hashedPassword],
       );
       res.redirect("/");
     } catch (error) {
+      console.error(error);
       return next(error);
     }
   },
