@@ -1,3 +1,13 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*::not(dialog) {
+  margin: 0;
+}
+
 body {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -11,4 +21,18 @@ body {
 
 .message {
   padding: 2rem 1rem;
+}
+
+.authbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border: 1px solid black;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }

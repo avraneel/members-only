@@ -19,8 +19,8 @@ create table if not exists messages (
 `;
 
 const FILL_DATA = `
-insert into users (first_name, last_name, email, password) values
-    ('John', 'Doe', 'johndoe@gmail.com', 'secretstuff');
+insert into users (first_name, last_name, email, password, status) values
+    ('John', 'Doe', 'johndoe@gmail.com', 'secretstuff', normal);
 
 insert into messages (user_id, timestamp, text) values
     (1, current_timestamp, 'I drank too much coffee today, my head feels dizzy');

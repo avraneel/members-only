@@ -1,13 +1,13 @@
+import passport from "passport";
+
 export const loginController = {
   loginControllerGet: (req, res) => {
     res.render("login");
   },
 
-  loginControllerPost: (req, res) => {
-    passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/signup",
-      failureMessage: true,
-    });
-  },
+  loginControllerPost: passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureMessage: true,
+  }),
 };
