@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import passport from "passport";
 
 export const loginController = {

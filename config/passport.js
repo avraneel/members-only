@@ -1,21 +1,26 @@
 import passport from "passport";
+import pkg from "passport-local";
 import pool from "../db/pool.js";
-import LocalStrategy from "passport-local";
+import bcrypt from "bcryptjs";
+
+const LocalStrategy = pkg.Strategy;
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
-    console.log("hit");
     try {
       const { rows } = await pool.query(
-        "select * from users where username = $1",
+        "select * from users where email = $1",
         [username],
       );
       const user = rows[0];
-      console.log(user);
+
       if (!user) {
-        return done(null, false, { message: "Username does not exist!" });
+        return done(null, false, { message: "Incorrect username" });
       }
-      if (user.password !== password) {
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
+        // passwords do not match!
+        console.log("here");
         return done(null, false, { message: "Incorrect password" });
       }
       return done(null, user);
@@ -25,7 +30,6 @@ passport.use(
   }),
 );
 
-// TODO express-session
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -36,9 +40,9 @@ passport.deserializeUser(async (id, done) => {
       id,
     ]);
     const user = rows[0];
+
+    done(null, user);
   } catch (err) {
     done(err);
   }
 });
-
-export default passport;
