@@ -2,6 +2,9 @@
     <% messages.forEach(element => { %>
         <article class="message">
             <%= element.text %>
+            <% if(currentUser) { %>
+                <p>- <%= element.first_name %> <%= element.last_name %>, <%= element.timestamp %></p>
+            <% } %>
         </article>
     <% }); %>
 </main>

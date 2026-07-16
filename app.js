@@ -31,17 +31,31 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 2,
+      maxAge: 1000 * 60 * 60 * 24,
     },
   }),
 );
 
 app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  console.log(res.locals);
+  next();
+});
 
 app.use("/login", loginRouter);
-app.post("/signup", signupRouter);
+app.use("/signup", signupRouter);
 
-app.get("/", indexRouter);
+app.use("/", indexRouter);
+
+app.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}...`);

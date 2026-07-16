@@ -7,11 +7,9 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <% if (locals.user) { %>
-      <h1>Welcome back, <%= user.first_name %></h1>
-      <a href="/logout">Log Out</a>
-    <% } %>
     <div class="block"><%- include('partials/navbar') %></div> 
-    <div class="block"><%- include('partials/messages.ejs', { messages: messages }) %></div>
+    <div class="block">
+      <%- include('partials/messages.ejs', { messages: messages }) %></div>
+      <%- include('partials/postform.ejs') %>
   </body>
 </html>
