@@ -84,6 +84,10 @@ app.post("/submit", async (req, res, next) => {
   res.render("index", { messages: messages });
 });
 
+app.get("/member", (req, res) => {
+  res.render("member");
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });

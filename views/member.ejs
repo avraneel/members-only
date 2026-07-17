@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Become a Member</title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="memberForm">
-      <form action="/makeMember" method="post">
+    <%- include("partials/navbar") %>
+    <div class="memberForm authbox">
+      <form action="/makeMember" method="post" class="authForm">
         <div class="formItem">
           <label for="passCode">Enter Passcode: </label>
           <input type="text" name="passCode" id="passCode" />
