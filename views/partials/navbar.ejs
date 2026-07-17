@@ -6,11 +6,11 @@
   <% } %>
   <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="/member">Join Us!</a></li>
     <% if (!currentUser) { %>
       <li><a href="/login">Login</a></li>
       <li><a href="/signup">Signup</a></li>
     <% } else { %>
+      <li><a href="/member">Join Us!</a></li>
       <li><a href="/logout">Logout</a></li>
     <% } %>
   </ul>
