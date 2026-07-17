@@ -1,10 +1,10 @@
 <main class="messages">
-    <% messages.forEach(element => { %>
+    <% for (let i = messages.length - 1; i >= 0; i--) { %>
         <article class="message">
-            <%= element.text %>
+            <%= messages[i].text %>
             <% if(currentUser) { %>
-                <p>- <%= element.first_name %> <%= element.last_name %>, <%= element.timestamp %></p>
+                <p>- <%= messages[i].first_name %> <%= messages[i].last_name %>, <%= messages[i].timestamp %></p>
             <% } %>
         </article>
-    <% }); %>
+    <% }; %>
 </main>

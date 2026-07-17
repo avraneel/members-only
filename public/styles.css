@@ -42,6 +42,10 @@ body {
   padding: 2rem;
 }
 
+.messageForm {
+  border: 1px solid black;
+}
+
 .messageForm form {
   display: grid;
   gap: 1rem;

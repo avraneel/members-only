@@ -3,6 +3,7 @@ import path from "node:path";
 import passport from "passport";
 import session from "express-session";
 import "./config/passport.js";
+import pool from "./db/pool.js";
 import { indexRouter } from "./routes/router.js";
 import { signupRouter } from "./routes/signupRouter.js";
 import { loginRouter } from "./routes/loginRouter.js";
@@ -31,7 +32,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 60 * 2,
     },
   }),
 );
@@ -39,7 +40,6 @@ app.use(
 app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
-  console.log(res.locals);
   next();
 });
 
@@ -55,6 +55,22 @@ app.get("/logout", (req, res, next) => {
     }
     res.redirect("/");
   });
+});
+
+app.post("/submit", async (req, res, next) => {
+  const msg = req.body.message;
+  const { rows } = await pool.query("select * from users where id = $1", [
+    res.locals.currentUser.id,
+  ]);
+  const userId = rows[0].id;
+  await pool.query(
+    "insert into messages (user_id, timestamp, text) values ($1, $2, $3)",
+    [userId, new Date(), req.body.message],
+  );
+  const { rows: messages } = await pool.query(
+    "select * from users join messages on messages.user_id = users.id;",
+  );
+  res.render("index", { messages: messages });
 });
 
 app.listen(port, () => {
