@@ -36,3 +36,22 @@ body {
   flex-direction: column;
   gap: 1rem;
 }
+
+.messageForm,
+.navbar {
+  padding: 2rem;
+}
+
+.messageForm form {
+  display: grid;
+  gap: 1rem;
+}
+
+.messageForm .formItem {
+  display: grid;
+  gap: 1rem;
+}
+
+.submitPost {
+  align-self: center;
+}

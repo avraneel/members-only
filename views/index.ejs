@@ -10,6 +10,8 @@
     <div class="block"><%- include('partials/navbar') %></div> 
     <div class="block">
       <%- include('partials/messages.ejs', { messages: messages }) %></div>
-      <%- include('partials/postform.ejs') %>
+      <% if(currentUser) { %>
+        <%- include('partials/postform.ejs') %>
+      <% } %>
   </body>
 </html>
