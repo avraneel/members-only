@@ -3,7 +3,7 @@
         <article class="message">
             <%= messages[i].text %>
             <% if(currentUser) { %>
-                <p>- <%= messages[i].first_name %> <%= messages[i].last_name %>, <%= messages[i].timestamp %></p>
+                <p><i>- <%= messages[i].first_name %> <%= messages[i].last_name %>, <%= messages[i].timestamp %></i></p>
             <% } %>
         </article>
     <% }; %>

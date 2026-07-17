@@ -11,7 +11,7 @@ import connectPgSimple from "connect-pg-simple";
 
 const app = express();
 const port = process.env.PORT || 3000;
-// const pgSession = connectPgSimple(session);
+const pgSession = connectPgSimple(session);
 
 app.set("view engine", "ejs");
 
@@ -22,17 +22,16 @@ app.use(express.static(assetsPath));
 // because we are using form
 app.use(express.urlencoded({ extended: true }));
 
-// TODO 1 use express session
 app.use(
   session({
-    store: new (connectPgSimple(session))({
+    store: new pgSession({
       conString: process.env.DB_URL,
     }),
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 2,
+      maxAge: 1000 * 60 * 60 * 24,
     },
   }),
 );
@@ -57,7 +56,16 @@ app.get("/logout", (req, res, next) => {
   });
 });
 
+app.get("/submit", (req, res) => {
+  console.log(req.query);
+  res.send("/");
+});
+
 app.post("/submit", async (req, res, next) => {
+  if (!res.locals.currentUser) {
+    res.redirect("/");
+  }
+  const query = req.query;
   const msg = req.body.message;
   const { rows } = await pool.query("select * from users where id = $1", [
     res.locals.currentUser.id,
@@ -70,6 +78,9 @@ app.post("/submit", async (req, res, next) => {
   const { rows: messages } = await pool.query(
     "select * from users join messages on messages.user_id = users.id;",
   );
+  messages.forEach((item) => {
+    item.timestamp = item.timestamp.toLocaleString();
+  });
   res.render("index", { messages: messages });
 });
 

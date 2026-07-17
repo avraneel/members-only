@@ -12,9 +12,3 @@ indexRouter.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
-
-export const router = new Router();
-
-router.post("/submit", function (req, res, next) {
-  const msg = req.body.message;
-});
