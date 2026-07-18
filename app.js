@@ -6,7 +6,7 @@ import "./config/passport.js";
 import pool from "./db/pool.js";
 import { router } from "./routes/index.js";
 import connectPgSimple from "connect-pg-simple";
-import { body, validationResult } from "express-validator";
+import { body, validationResult, matchedData } from "express-validator";
 
 const app = express();
 const port = process.env.PORT || 3000;

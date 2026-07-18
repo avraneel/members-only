@@ -8,6 +8,11 @@
   margin: 0;
 }
 
+input,
+textarea {
+  font-family: inherit;
+}
+
 :root {
   --odd-color: #dbdbdb;
   --even-color: #bdbdbd;

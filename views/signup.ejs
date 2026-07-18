@@ -11,6 +11,7 @@
     <div class="signup authbox">
       <form action="/signup" method="post" class="authForm">
         <h2>Sign up</h2>
+        <%- include("partials/errors.ejs") %>
         <div class="formFields">
           <div class="formItem">
             <label for="firstName">First Name *</label>
@@ -27,6 +28,15 @@
           <div class="formItem">
             <label for="password">Password *</label>
             <input type="password" name="password" id="password" required />
+          </div>
+          <div class="formItem">
+            <label for="password">Confirm Password *</label>
+            <input
+              type="password"
+              name="confirm-password"
+              id="confirm-password"
+              required
+            />
           </div>
           <div class="formItem">
             <div class="cb">
