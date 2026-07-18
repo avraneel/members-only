@@ -8,10 +8,23 @@
   margin: 0;
 }
 
+:root {
+  --odd-color: #dbdbdb;
+  --even-color: #bdbdbd;
+}
+
+.message:nth-child(odd) {
+  background-color: var(--odd-color);
+}
+
+.message:nth-child(even) {
+  background-color: var(--even-color);
+}
+
 body {
   display: grid;
   height: 100vh;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
 label {
@@ -39,6 +52,12 @@ textarea {
   padding: 1rem 1rem;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+}
+
+.msgCardRow {
+  display: flex;
+  justify-content: space-between;
 }
 
 .message p {

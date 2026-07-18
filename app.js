@@ -69,13 +69,7 @@ app.post("/submit", async (req, res, next) => {
     "insert into messages (user_id, timestamp, text) values ($1, $2, $3)",
     [userId, new Date(), req.body.message],
   );
-  const { rows: messages } = await pool.query(
-    "select * from users join messages on messages.user_id = users.id;",
-  );
-  messages.forEach((item) => {
-    item.timestamp = item.timestamp.toLocaleString();
-  });
-  res.render("index", { messages: messages });
+  res.redirect("/");
 });
 
 app.get("/member", (req, res) => {

@@ -46,3 +46,9 @@ router.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
+
+router.post("/delete", async (req, res) => {
+  await pool.query("delete from messages where id = $1", [req.body.msgId]);
+  console.log(req.body);
+  res.redirect("/");
+});
