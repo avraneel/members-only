@@ -1,9 +1,14 @@
 <main class="messages">
     <% for (let i = messages.length - 1; i >= 0; i--) { %>
-        <article class="message">
+        <article class="message <%= messages[i].id %>">
             <%= messages[i].text %>
-            <% if(currentUser) { %>
+            <% if(currentUser && (currentUser.status === "member" || currentUser.status === "admin") ) { %>
+                <div>
                 <p><i>- <%= messages[i].first_name %> <%= messages[i].last_name %>, <%= messages[i].timestamp %></i></p>
+                <% if (currentUser.status === "admin") { %>
+                    <button>Delete</button>
+                <% } %>
+                </div>
             <% } %>
         </article>
     <% }; %>

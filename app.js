@@ -4,10 +4,9 @@ import passport from "passport";
 import session from "express-session";
 import "./config/passport.js";
 import pool from "./db/pool.js";
-import { indexRouter } from "./routes/router.js";
-import { signupRouter } from "./routes/signupRouter.js";
-import { loginRouter } from "./routes/loginRouter.js";
+import { router } from "./routes/index.js";
 import connectPgSimple from "connect-pg-simple";
+import { body, validationResult } from "express-validator";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -42,19 +41,14 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/login", loginRouter);
-app.use("/signup", signupRouter);
-
-app.use("/", indexRouter);
-
-app.get("/logout", (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
+// for debugging
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
 });
+
+app.use("/", router);
 
 app.get("/submit", (req, res) => {
   console.log(req.query);
@@ -86,6 +80,15 @@ app.post("/submit", async (req, res, next) => {
 
 app.get("/member", (req, res) => {
   res.render("member");
+});
+
+app.post("/member", async (req, res) => {
+  if (req.body.passcode === process.env.PASSCODE) {
+    await pool.query("update users set status = 'member' where id = $1", [
+      res.locals.currentUser.id,
+    ]);
+  }
+  res.redirect("/");
 });
 
 app.listen(port, () => {

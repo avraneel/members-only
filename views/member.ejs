@@ -9,12 +9,12 @@
   <body>
     <%- include("partials/navbar") %>
     <div class="memberForm authbox">
-      <form action="/makeMember" method="post" class="authForm">
+      <form action="/member" method="post" class="authForm">
         <div class="formItem">
           <label for="passCode">Enter Passcode: </label>
-          <input type="text" name="passCode" id="passCode" />
+          <input type="password" name="passcode" id="passcode" />
         </div>
-        <button>Submit</button>
+        <button class="btn">Submit</button>
       </form>
     </div>
   </body>

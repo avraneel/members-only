@@ -1,10 +1,13 @@
-<nav class="navbar">
+<nav class="block navbar">
   <% if (currentUser) { %>
-    <div class="greeting">
-      <h1>Welcome back, <%= currentUser.first_name %></h1>
+    <div class="greeting navitem">
+      <h3>Welcome back, <%= currentUser.first_name %></h1>
     </div>
+    <p class="status navitem">Status: <%= currentUser.status %></p>
+  <% } else { %>
+    <h3>Members Only</h3>
   <% } %>
-  <ul>
+  <ul class="menu navitem">
     <li><a href="/">Home</a></li>
     <% if (!currentUser) { %>
       <li><a href="/login">Login</a></li>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="block"><%- include('partials/navbar') %></div> 
+    <%- include('partials/navbar') %>
     <div class="block">
       <%- include('partials/messages.ejs', { messages: messages }) %></div>
       <% if(currentUser) { %>

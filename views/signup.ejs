@@ -9,26 +9,33 @@
   <body>
     <%- include("partials/navbar") %>
     <div class="signup authbox">
-      <!-- TODO maybe put them both together? -->
       <form action="/signup" method="post" class="authForm">
         <h2>Sign up</h2>
-        <div class="formItem">
-          <label for="firstName">First Name: </label>
-          <input type="text" name="firstName" id="firstName" />
+        <div class="formFields">
+          <div class="formItem">
+            <label for="firstName">First Name *</label>
+            <input type="text" name="firstName" id="firstName" required />
+          </div>
+          <div class="formItem">
+            <label for="lastName">Last Name *</label>
+            <input type="text" name="lastName" id="lastName" required />
+          </div>
+          <div class="formItem">
+            <label for="email">E-mail ID *</label>
+            <input type="email" name="username" id="email" required />
+          </div>
+          <div class="formItem">
+            <label for="password">Password *</label>
+            <input type="password" name="password" id="password" required />
+          </div>
+          <div class="formItem">
+            <div class="cb">
+              <input type="checkbox" name="admin" value="admin" id="admin" />
+              <label for="admin">This user is an admin</label>
+            </div>
+          </div>
         </div>
-        <div class="formItem">
-          <label for="lastName">Last Name: </label>
-          <input type="text" name="lastName" id="lastName" />
-        </div>
-        <div class="formItem">
-          <label for="email">E-mail ID: </label>
-          <input type="email" name="email" id="email" />
-        </div>
-        <div class="formItem">
-          <label for="password">Password: </label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <button>Sign Up</button>
+        <button class="authbutton btn">Sign Up</button>
       </form>
     </div>
   </body>

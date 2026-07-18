@@ -11,8 +11,14 @@ export const signupController = {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 12);
       await pool.query(
-        "insert into users (first_name, last_name, email, password) values ($1, $2, $3, $4)",
-        [req.body.firstName, req.body.lastName, req.body.email, hashedPassword],
+        "insert into users (first_name, last_name, email, password, status) values ($1, $2, $3, $4, $5)",
+        [
+          req.body.firstName,
+          req.body.lastName,
+          req.body.username,
+          hashedPassword,
+          req.body.admin || "user",
+        ],
       );
       res.redirect("/");
     } catch (error) {

@@ -4,19 +4,35 @@
   box-sizing: border-box;
 }
 
-*::not(dialog) {
+*:not(dialog) {
   margin: 0;
 }
 
 body {
   display: grid;
+  height: 100vh;
   grid-template-columns: 1fr 2fr 1fr;
 }
 
-.block,
-.message {
-  border-collapse: collapse;
-  border: 1px solid black;
+label {
+  display: inline-block;
+  min-width: 90px;
+}
+
+input:not([type="checkbox"]),
+textarea {
+  width: 300px;
+  border: 1px solid #999999;
+}
+
+input:focus,
+textarea:focus {
+  outline-style: solid;
+  outline-color: black;
+}
+
+textarea {
+  vertical-align: top;
 }
 
 .message {
@@ -30,17 +46,39 @@ body {
 }
 
 .authbox {
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
   border: 1px solid black;
 }
 
 .authForm {
   display: flex;
   flex-direction: column;
+  gap: 2.5rem;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
+}
+
+.formItem {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  background-color: #cfcfcf;
+  gap: 1rem;
+}
+
+.cb {
+  display: inline;
 }
 
 .messageForm,
@@ -57,11 +95,17 @@ body {
   gap: 1rem;
 }
 
-.messageForm .formItem {
-  display: grid;
-  gap: 1rem;
-}
-
 .submitPost {
   align-self: center;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #999999;
+  align-self: flex-start;
+}
+
+.btn:hover {
+  cursor: pointer;
 }

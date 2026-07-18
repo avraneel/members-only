@@ -11,15 +11,17 @@
     <div class="login authbox">
       <form action="/login" method="post" class="authForm">
         <h2>Log In</h2>
-        <div class="formItem">
-          <label for="username">E-mail ID: </label>
-          <input type="email" name="username" id="username" />
+        <div class="formFields">
+          <div class="formItem">
+            <label for="username">E-mail ID *</label>
+            <input type="email" name="username" id="username" required />
+          </div>
+          <div class="formItem">
+            <label for="password">Password *</label>
+            <input type="password" name="password" id="password" required />
+          </div>
         </div>
-        <div class="formItem">
-          <label for="password">Password: </label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <button>Submit</button>
+        <button class="btn">Submit</button>
       </form>
     </div>
   </body>
