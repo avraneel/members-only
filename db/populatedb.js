@@ -42,9 +42,6 @@ async function main() {
   });
   try {
     await client.connect();
-    console.log("[DROP] Deleting old tables...");
-    await client.query(DEL_TABLES);
-    console.log("[DROP] Old tables deleted successfully!");
     console.log("[CREATE] Creating Tables...");
     await client.query(CREATE_TABLES);
     console.log("[CREATE] Tables created successfully!");
